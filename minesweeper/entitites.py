@@ -1,0 +1,54 @@
+from __future__ import annotations
+
+import random
+from dataclasses import dataclass
+from enum import Enum
+from typing import List
+from uuid import uuid4
+
+
+@dataclass
+class Team:
+    name: str
+    id: str
+
+
+class Colors(Enum):
+    RED = 'red'
+    GREEN = 'green'
+    BLUE = 'blue'
+    YELLOW = 'yellow'
+    ORANGE = 'orange'
+
+
+@dataclass
+class Game:
+    id: str
+    solution: List[Colors]
+    guesses: List[(Tuple[Guess, Response]]
+
+    @property
+    def n_stones(self) -> int:
+        return len(self.solution)
+
+    def init(self, n_stones: int = 4):
+        return Game(
+            id = str(uuid4()),
+            solution=random.choices(list(Colors), k=n_stones),
+            guesses=[],
+        )
+    
+
+@dataclass
+class Guess:
+    team_id: str
+    game_id: str
+    guess: List[Colors]
+
+
+@dataclass
+class Response:
+    n_correct_placement: int
+    n_incorrect_placement: int
+    n_unknown: int
+
