@@ -39,3 +39,21 @@ def test_teams_get_unique_ids():
     t1, t2 = r.json(), r2.json()
     assert t1['team_name'] == t2['team_name']
     assert t1['team_id'] != t2['team_id']
+
+
+def test_teams_are_registered():
+    r = requests.post(
+        "http://localhost:8000/register",
+        json={
+            "team_name": "My Team",
+            "do_registration": True,
+        }
+    )
+    assert r.ok
+    r = requests.get(
+        "http://localhost:8000/teams",
+    )
+    assert r.ok
+    teams = r.json()['teams']
+    assert len(teams) > 0
+    assert teams[-1]['name'] == "My Team"

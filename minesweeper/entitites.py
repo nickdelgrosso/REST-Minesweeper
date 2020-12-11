@@ -54,3 +54,17 @@ class Response:
     n_correct_placement: int
     n_incorrect_placement: int
     n_unknown: int
+
+
+@dataclass
+class Session:
+    games: List[Game]
+    teams: List[Team]
+
+    @classmethod
+    def init(cls):
+        return cls(games=[], teams=[])
+
+    def register_team(self, team: Team):
+        self.teams.append(team)
+
