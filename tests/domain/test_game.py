@@ -41,7 +41,8 @@ cases = [
     ((r, g), (g, r), 0, 2, 0),
     ((r, r), (r, r), 2, 0, 0),
     ((r, g, b), (r, b, y), 1, 1, 1),
-    ((y, b, g, r, y, b, y, g, b), (b, g, y, b, r, r, g, r, b), 1, 6, 2)
+    ((y, b, g, r, y, b, y, g, b), (b, g, y, b, r, r, g, r, b), 1, 6, 2),
+    ((y, r, r, r, g, b, r, y, y), (b, g, y, r, y, y, r, r, g), 2, 6, 1),
 ]
 
 
