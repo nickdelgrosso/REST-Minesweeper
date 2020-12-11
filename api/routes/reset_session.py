@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
-from minesweeper.use_cases import ResetRequest, ResetResponse, UseCaseProvider
+from minesweeper.cases.reset_session import ResetResponse, ResetRequest
+from minesweeper.use_cases import UseCaseProvider
 
 router = APIRouter()
 
