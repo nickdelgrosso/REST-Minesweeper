@@ -1,13 +1,12 @@
 from fastapi import FastAPI
 
-from api.routes import register_team, new_game
+from api.routes import new_game
 from minesweeper.cases.list_teams import PublicTeamListResponse
 from minesweeper.cases.register_team import RegistrationRequest, RegistrationResponse
 from minesweeper.cases.reset_session import ResetResponse, ResetRequest
 from minesweeper.use_cases import UseCaseProvider
 
 app = FastAPI()
-app.include_router(register_team.router)
 app.include_router(new_game.router)
 
 
