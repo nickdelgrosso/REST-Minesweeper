@@ -1,4 +1,3 @@
-from data.inmemory import Session
 from domain.entities import Team, Game
 from domain.value_objects import Colors
 
@@ -25,8 +24,3 @@ def test_game_knows_how_many_stones_it_has():
     assert game.n_stones == 4
 
 
-def test_session_knows_if_team_id_exists():
-    team = Team(name='hi', id='abcde')
-    session = Session(teams=[team], games=[])
-    assert session.get_team(id='abcde') == team
-    assert session.get_team(id='aaaaa') is None
