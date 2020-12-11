@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from typing import List, Tuple
 from uuid import uuid4
 
-from minesweeper.value_objects import Colors
+from minesweeper.value_objects import Colors, Guess, Hint
 
 
 @dataclass(frozen=True)
@@ -31,11 +31,3 @@ class Game:
         )
 
 
-Guess = List[Colors]
-
-
-@dataclass
-class Hint:
-    n_correct_placement: int
-    n_incorrect_placement: int
-    n_unknown: int
