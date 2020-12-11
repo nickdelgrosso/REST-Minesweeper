@@ -1,13 +1,12 @@
 from fastapi import FastAPI
 
-from api.routes import new_game
 from minesweeper.cases.list_teams import PublicTeamListResponse
+from minesweeper.cases.new_game import NewGameResponse, NewGameRequest
 from minesweeper.cases.register_team import RegistrationRequest, RegistrationResponse
 from minesweeper.cases.reset_session import ResetResponse, ResetRequest
 from minesweeper.use_cases import UseCaseProvider
 
 app = FastAPI()
-app.include_router(new_game.router)
 
 
 @app.get("/")
@@ -29,3 +28,8 @@ async def teams():
 @app.post("/register", response_model=RegistrationResponse)
 async def register(request: RegistrationRequest):
     return UseCaseProvider().register_team(request=request)
+
+
+@app.post("/new-game", response_model=NewGameResponse)
+def register_new_game(request: NewGameRequest):
+    return UseCaseProvider().start_new_game(request=request)

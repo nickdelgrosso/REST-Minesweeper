@@ -1,5 +1,6 @@
 from data.inmemory import session
 from minesweeper.cases.list_teams import ListTeamsUseCase
+from minesweeper.cases.new_game import NewGameUseCase
 from minesweeper.cases.register_team import RegisterTeamUseCase
 from minesweeper.cases.reset_session import ResetSessionUseCase
 
@@ -19,3 +20,7 @@ class UseCaseProvider:
     @property
     def register_team(self) -> RegisterTeamUseCase:
         return RegisterTeamUseCase(session=self.session)
+
+    @property
+    def start_new_game(self) -> NewGameUseCase:
+        return NewGameUseCase(session=self.session)
