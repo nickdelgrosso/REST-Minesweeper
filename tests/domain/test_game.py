@@ -1,3 +1,5 @@
+import pytest
+
 from domain.entities import Team, Game
 from domain.value_objects import Colors
 
@@ -24,3 +26,12 @@ def test_game_knows_how_many_stones_it_has():
     assert game.n_stones == 4
 
 
+red, green = Colors.RED, Colors.GREEN
+cases = [
+    ((red, red, red, red), (green, green, green, green), 0),
+]
+@pytest.mark.parametrize("solution, guess, n_correct", cases)
+def test_game_can_tell_correct_placements(solution, guess, n_correct):
+    game = Game(solution=solution)
+    hint = game.guess(guess)
+    assert hint.n_correct_placement == n_correct

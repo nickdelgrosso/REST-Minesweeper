@@ -14,7 +14,7 @@ class Colors(Enum):
 Guess = List[Colors]
 
 
-@dataclass
+@dataclass(frozen=True)
 class Hint:
     n_correct_placement: int
     n_incorrect_placement: int
