@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 from enum import Enum
 from typing import List, Sequence
@@ -18,12 +20,12 @@ Guess = List[Colors]
 
 @dataclass(frozen=True)
 class Hint:
-    n_correct_placement: int
-    n_incorrect_placement: int
+    correct_placements: int
+    incorrect_placements: int
     n_unknown: int
 
     @classmethod
-    def from_comparison(cls, guess: Sequence[Colors], solution: Sequence[Colors]):
+    def from_comparison(cls, guess: Sequence[Colors], solution: Sequence[Colors]) -> Hint:
         if len(guess) != len(solution):
             raise IncorrectNumberOfStonesError(f"Game has {len(solution)} stones, guess had {len(guess)} stones.")
 
@@ -32,7 +34,7 @@ class Hint:
             if solution_stone == guess_stone:
                 correct_placements += 1
         return cls(
-            n_correct_placement=correct_placements,
-            n_incorrect_placement=0,
+            correct_placements=correct_placements,
+            incorrect_placements=0,
             n_unknown=0,
         )

@@ -1,7 +1,7 @@
 import pytest
 
 from domain.entities import Team, Game
-from domain.value_objects import Colors
+from domain.value_objects import Colors, Hint
 
 
 def test_team_creates_with_unique_string_ids():
@@ -28,10 +28,14 @@ def test_game_knows_how_many_stones_it_has():
 
 red, green = Colors.RED, Colors.GREEN
 cases = [
-    ((red, red, red, red), (green, green, green, green), 0),
+    ((red, red, red, red), (green, green, green, green), 0, 0),
+    ((red, red, red, green), (green, green, green, green), 1, 0),
+    ((green, red, red, green), (green, green, green, green), 2, 0),
+    ((green, red, red, green), (red, red, red, red), 2, 0),
+    ((green, red, red, green), (green, red, red, green), 4, 0),
 ]
-@pytest.mark.parametrize("solution, guess, n_correct", cases)
-def test_game_can_tell_correct_placements(solution, guess, n_correct):
-    game = Game(solution=solution)
-    hint = game.guess(guess)
-    assert hint.n_correct_placement == n_correct
+@pytest.mark.parametrize("solution, guess, n_correct, n_incorrect", cases)
+def test_can_calculate_correct_placements(solution, guess, n_correct, n_incorrect):
+    hint = Hint.from_comparison(guess=guess, solution=solution)
+    assert hint.correct_placements == n_correct
+    assert hint.incorrect_placements == n_incorrect
