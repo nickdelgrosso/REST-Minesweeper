@@ -14,8 +14,8 @@ def session():
 
 
 def test_session_does_not_reset_when_credentials_incorrect(session):
-    use_case = ResetSessionUseCase(session=session)
-    response = use_case(request=ResetRequest(
+    reset_session = ResetSessionUseCase(session=session)
+    response = reset_session(request=ResetRequest(
         username="nickdg",
         password="flipthetable2",
     ))
@@ -24,8 +24,8 @@ def test_session_does_not_reset_when_credentials_incorrect(session):
 
 
 def test_session_resets_with_correct_credentials(session):
-    use_case = ResetSessionUseCase(session=session)
-    response = use_case(request=ResetRequest(
+    reset_session = ResetSessionUseCase(session=session)
+    response = reset_session(request=ResetRequest(
         username="nickdg",
         password="flipthetable",
     ))
