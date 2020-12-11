@@ -6,12 +6,12 @@ from pydantic.main import BaseModel
 from data import inmemory
 from minesweeper.entitites import Team
 
-
 router = APIRouter()
 
 
 class PublicTeamResponse(BaseModel):
     name: str
+
 
 class PublicTeamListResponse(BaseModel):
     teams: List[PublicTeamResponse]
