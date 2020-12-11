@@ -18,7 +18,6 @@ class Team:
 @dataclass(frozen=True)
 class Game:
     solution: Tuple[Colors, ...]
-    guesses: List[Tuple[Guess, Hint]] = field(default_factory=list)
     id: str = field(default_factory=lambda: str(uuid4()))
 
     @property
