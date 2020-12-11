@@ -65,3 +65,15 @@ def test_guessing_updates_turn_counter():
         game = game.guess((r, r, g))
         assert game.num_turns == idx + 1
 
+
+def test_guessing_correctly_activates_win_flag():
+    game = Game(solution=(r, r, r))
+    assert game.won is False
+    game = game.guess((g, g, g))
+    assert game.won is False
+    game = game.guess((r, r, g))
+    assert game.won is False
+    game = game.guess((r, r, r))
+    assert game.won is True
+    game = game.guess((r, b, b))
+    assert game.won is True

@@ -16,6 +16,10 @@ class Colors(Enum):
 StoneSequence = Tuple[Colors, ...]
 
 
+class InvalidClueError(Exception):
+    ...
+
+
 @dataclass(frozen=True)
 class Clue:
     stones: StoneSequence
@@ -27,4 +31,9 @@ class Clue:
         self.validate()
 
     def validate(self):
-        assert len(self.stones) == self.correct + self.incorrect + self.unknown
+        if len(self.stones) != self.correct + self.incorrect + self.unknown:
+            raise InvalidClueError(str(self))
+
+    @property
+    def is_perfect_match(self) -> bool:
+        return self.correct == len(self.stones)

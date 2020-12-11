@@ -67,6 +67,10 @@ class Game:
     def last_clue(self) -> Optional[Clue]:
         return self.clues[-1] if self.clues else None
 
+    @property
+    def won(self) -> bool:
+        return any(clue.is_perfect_match for clue in self.clues[::-1])
+
     def guess(self, guess: StoneSequence) -> Game:
         clue = self.get_clue(guess=guess, solution=self.solution)
         return Game(
