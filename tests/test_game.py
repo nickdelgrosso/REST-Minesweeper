@@ -1,4 +1,5 @@
-from minesweeper.entitites import Team, Game, Colors, Guess
+from minesweeper.entitites import Team, Game, Guess
+from minesweeper.value_objects import Colors
 from data.inmemory import Session
 
 
