@@ -3,43 +3,15 @@ from typing import List
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from data import inmemory
 from minesweeper.entitites import Team, Session
+from routes import ping, register
 
 app = FastAPI()
-
-session = Session.init()
-
-
-class Message(BaseModel):
-    message: str
+app.include_router(ping.router)
+app.include_router(register.router)
 
 
-@app.get("/", response_model=Message)
-async def root():
-    return {"message": "Welcome to Lean Minesweeper!"}
-
-
-class RegistrationRequest(BaseModel):
-    team_name: str
-    do_registration: bool = False
-
-class RegistrationResponse(BaseModel):
-    is_registered: bool
-    team_name: str
-    team_id: str
-
-
-@app.post("/register", response_model=RegistrationResponse)
-async def register(request: RegistrationRequest):
-    team = Team.init(name=request.team_name)
-    if request.do_registration:
-        session.register_team(team=team)
-    response = RegistrationResponse(
-        is_registered=request.do_registration,
-        team_name=team.name,
-        team_id=team.id
-    )
-    return response
 
 
 class PublicTeamResponse(BaseModel):
@@ -57,6 +29,7 @@ class PublicTeamListResponse(BaseModel):
 
 @app.get("/teams", response_model=PublicTeamListResponse)
 async def teams():
+    session = inmemory.session
     return PublicTeamListResponse.from_teams(teams=session.teams)
 
 
@@ -70,8 +43,7 @@ class PublicResetResponse(BaseModel):
 @app.post("/reset")
 async def reset_session(request: PublicResetRequest):
     if request.username == "nickdg" and request.password == "flipthetable":  # Just for demo, never do this for production code!!!!
-        global session  #  Also never do this.
-        session = Session.init()
+        inmemory.session = Session.init()
         return PublicResetResponse(successful=True)
     else:
         return PublicResetResponse(successful=False)
