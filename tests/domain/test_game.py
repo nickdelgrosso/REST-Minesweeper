@@ -48,8 +48,7 @@ cases = [
 
 @pytest.mark.parametrize("solution, guess, correct, incorrect, unknown", cases)
 def test_game_can_tell_correct_placements(solution, guess, correct, incorrect, unknown):
-    game = Game(solution=solution)
-    hint = game.guess(guess)
+    hint = Game.get_hint(solution=solution, guess=guess)
     assert hint.correct == correct
     assert hint.incorrect == incorrect
     assert hint.unknown == unknown
