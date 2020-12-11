@@ -32,4 +32,4 @@ class Game:
         )
 
     def guess(self, guess: Guess) -> Hint:
-        return Hint.compare(guess=guess, solution=self.solution)
+        return Hint.from_comparison(guess=guess, solution=self.solution)

@@ -23,7 +23,7 @@ class Hint:
     n_unknown: int
 
     @classmethod
-    def compare(cls, guess: Sequence[Colors], solution: Sequence[Colors]):
+    def from_comparison(cls, guess: Sequence[Colors], solution: Sequence[Colors]):
         if len(guess) != len(solution):
             raise IncorrectNumberOfStonesError(f"Game has {len(solution)} stones, guess had {len(guess)} stones.")
 
