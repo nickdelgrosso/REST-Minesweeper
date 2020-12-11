@@ -75,3 +75,11 @@ async def reset_session(request: PublicResetRequest):
         return PublicResetResponse(successful=True)
     else:
         return PublicResetResponse(successful=False)
+
+#
+# class NewGameRequest(BaseModel):
+#     team_id: str
+#
+# @app.post("/new-game")
+# async def new_game(request: NewGameRequest):
+#     ...
