@@ -12,6 +12,9 @@ class Team:
     name: str
     id: str
 
+    @classmethod
+    def init(cls, name: str):
+        return cls(name=name, id=str(uuid4()))
 
 class Colors(Enum):
     RED = 'red'
