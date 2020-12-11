@@ -17,7 +17,7 @@ async def root():
 @app.post("/reset", response_model=ResetResponse)
 async def reset_session(request: ResetRequest) -> ResetResponse:
     use_cases = UseCaseProvider()
-    return use_cases.reset_session(request=request)
+    return use_cases.reset_session(username=request.username, password=request.password)
 
 
 @app.get("/teams", response_model=TeamListResponse)

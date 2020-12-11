@@ -25,8 +25,7 @@ def test_game_knows_how_many_stones_it_has():
     assert game.n_stones == 4
 
 
-def test_session_knows_if_team_id_exists_():
+def test_session_knows_if_team_id_exists():
     session = Session(teams=[Team(name='hi', id='abcde')], games={})
     assert session.team_id_exists(id='abcde') == True
     assert session.team_id_exists(id='aaaaa') == False
-
