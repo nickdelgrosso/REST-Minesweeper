@@ -1,7 +1,7 @@
 import pytest
 
 from domain.entities import Team, Game
-from domain.value_objects import Colors, Hint
+from domain.value_objects import Colors
 
 
 def test_team_creates_with_unique_string_ids():
@@ -35,7 +35,8 @@ cases = [
     ((green, red, red, green), (green, red, red, green), 4, 0),
 ]
 @pytest.mark.parametrize("solution, guess, n_correct, n_incorrect", cases)
-def test_can_calculate_correct_placements(solution, guess, n_correct, n_incorrect):
-    hint = Hint.from_comparison(guess=guess, solution=solution)
+def test_game_can_tell_correct_placements(solution, guess, n_correct, n_incorrect):
+    game = Game(solution=solution)
+    hint = game.guess(guess)
     assert hint.correct_placements == n_correct
     assert hint.incorrect_placements == n_incorrect
