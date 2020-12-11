@@ -1,6 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Dict, List
-from uuid import uuid4
+from typing import List
 
 from minesweeper.entitites import Game, Team
 
@@ -8,7 +7,7 @@ from minesweeper.entitites import Game, Team
 @dataclass
 class Session:
     teams: List[Team] = field(default_factory=list)
-    games: Dict[str, Game] = field(default_factory=dict)
+    games: List[Game] = field(default_factory=list)
 
     @classmethod
     def init(cls):
@@ -16,7 +15,7 @@ class Session:
 
     def reset(self):
         self.teams = []
-        self.games = {}
+        self.games = []
 
     def add_team(self, team: Team):
         self.teams.append(team)
@@ -24,13 +23,11 @@ class Session:
     def team_id_exists(self, id: str):
         return any(team.id == id for team in self.teams)
 
-    def add_game(self, game: Game) -> str:
-        game_id = str(uuid4())
-        self.games[game_id] = game
-        return game_id
+    def add_game(self, game: Game):
+        self.games.append(game)
 
     def game_id_exists(self, id: str):
-        return any(team.id == id for team in self.teams)
+        return any(game.id == id for game in self.games)
 
 
 session = Session()

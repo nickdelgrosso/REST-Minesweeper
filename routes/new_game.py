@@ -24,10 +24,10 @@ def register_new_game(request: NewGameRequest):
     session = inmemory.session
     if session.team_id_exists(id=request.team_id):
         game = Game.init(n_stones=request.n_stones)
-        game_id = session.add_game(game)
+        session.add_game(game)
         return NewGameResponse(
             successful=True,
-            game_id=game_id
+            game_id=game.id
         )
     else:
         return NewGameResponse(

@@ -24,6 +24,7 @@ class Colors(Enum):
 class Game:
     solution: List[Colors]
     guesses: List[Tuple[Guess, Hint]] = field(default_factory=list)
+    id: str = field(default_factory=lambda: str(uuid4()))
 
     @property
     def n_stones(self) -> int:
