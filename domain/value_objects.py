@@ -21,9 +21,9 @@ Guess = List[Colors]
 
 @dataclass(frozen=True)
 class Hint:
-    correct_placements: int
-    incorrect_placements: int
-    n_unknown: int
+    correct: int
+    incorrect: int
+    unknown: int
 
     @classmethod
     def from_comparison(cls, guess: Sequence[Colors], solution: Sequence[Colors]) -> Hint:
@@ -31,20 +31,22 @@ class Hint:
             raise IncorrectNumberOfStonesError(f"Game has {len(solution)} stones, guess had {len(guess)} stones.")
 
         remaining_guess, remaining_solution = [], []
-        correct_placements = 0
+        correct = 0
         for solution_stone, guess_stone in zip(solution, guess):
             if solution_stone == guess_stone:
-                correct_placements += 1
+                correct += 1
             else:
                 remaining_guess.append(guess_stone)
                 remaining_solution.append(solution_stone)
 
         guess_counts = Counter(remaining_guess)
         solution_counts = Counter(remaining_solution)
-        incorrect_placements = sum(min(guess_counts[color], solution_counts[color]) for color in Colors)
+        incorrect = sum(min(guess_counts[color], solution_counts[color]) for color in Colors)
+        unknown = len(guess) - correct - incorrect
 
+        assert (correct + incorrect + unknown) == len(guess), "Total of hints must equal number of stones."
         return cls(
-            correct_placements=correct_placements,
-            incorrect_placements=incorrect_placements,
-            n_unknown=0,
+            correct=correct,
+            incorrect=incorrect,
+            unknown=unknown,
         )

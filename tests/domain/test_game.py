@@ -28,24 +28,26 @@ def test_game_knows_how_many_stones_it_has():
 
 r, g, b = Colors.RED, Colors.GREEN, Colors.BLUE
 cases = [
-    ((r, r, r, r), (g, g, g, g), 0, 0),
-    ((r, r, r, g), (g, g, g, g), 1, 0),
-    ((g, r, r, g), (g, g, g, g), 2, 0),
-    ((g, r, r, g), (r, r, r, r), 2, 0),
-    ((g, r, r, g), (g, r, r, g), 4, 0),
-    ((r, r, r, g), (g, b, b, b), 0, 1),
-    ((r, r, g, g), (g, g, b, b), 0, 2),
-    ((r, g, g, g), (g, b, b, b), 0, 1),
-    ((b, g, g, g), (g, b, b, b), 0, 2),
-    ((r, g, b, b), (b, b, r, g), 0, 4),
-    ((r, g), (g, r), 0, 2),
-    ((r, r), (r, r), 2, 0),
+    ((r, r, r, r), (g, g, g, g), 0, 0, 4),
+    ((r, r, r, g), (g, g, g, g), 1, 0, 3),
+    ((g, r, r, g), (g, g, g, g), 2, 0, 2),
+    ((g, r, r, g), (r, r, r, r), 2, 0, 2),
+    ((g, r, r, g), (g, r, r, g), 4, 0, 0),
+    ((r, r, r, g), (g, b, b, b), 0, 1, 3),
+    ((r, r, g, g), (g, g, b, b), 0, 2, 2),
+    ((r, g, g, g), (g, b, b, b), 0, 1, 3),
+    ((b, g, g, g), (g, b, b, b), 0, 2, 2),
+    ((r, g, b, b), (b, b, r, g), 0, 4, 0),
+    ((r, g), (g, r), 0, 2, 0),
+    ((r, r), (r, r), 2, 0, 0),
 ]
 
 
-@pytest.mark.parametrize("solution, guess, n_correct, incorrect", cases)
-def test_game_can_tell_correct_placements(solution, guess, n_correct, incorrect):
+@pytest.mark.parametrize("solution, guess, correct, incorrect, unknown", cases)
+def test_game_can_tell_correct_placements(solution, guess, correct, incorrect, unknown):
     game = Game(solution=solution)
     hint = game.guess(guess)
-    assert hint.correct_placements == n_correct
+    assert hint.correct == correct
+    assert hint.incorrect == incorrect
+    assert hint.unknown == unknown
 
