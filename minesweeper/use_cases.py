@@ -1,4 +1,5 @@
 from data.inmemory import session
+from minesweeper.cases.list_teams import ListTeamsUseCase
 from minesweeper.cases.reset_session import ResetSessionUseCase
 
 
@@ -9,3 +10,7 @@ class UseCaseProvider:
     @property
     def reset_session(self) -> ResetSessionUseCase:
         return ResetSessionUseCase(session=self.session)
+
+    @property
+    def list_teams(self) -> ListTeamsUseCase:
+        return ListTeamsUseCase(session=self.session)

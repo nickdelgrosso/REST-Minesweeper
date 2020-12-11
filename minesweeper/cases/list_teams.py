@@ -1,12 +1,9 @@
 from typing import List
 
-from fastapi import APIRouter
 from pydantic.main import BaseModel
 
-from data import inmemory
+from minesweeper.cases.base import BaseUseCase
 from minesweeper.entitites import Team
-
-router = APIRouter()
 
 
 class PublicTeamResponse(BaseModel):
@@ -23,8 +20,7 @@ class PublicTeamListResponse(BaseModel):
         )
 
 
-@router.get("/teams", response_model=PublicTeamListResponse)
-async def teams():
-    session = inmemory.session
-    print(session)
-    return PublicTeamListResponse.from_teams(teams=session.teams)
+class ListTeamsUseCase(BaseUseCase):
+
+    def __call__(self) -> PublicTeamListResponse:
+        return PublicTeamListResponse.from_teams(teams=self.session.teams)
