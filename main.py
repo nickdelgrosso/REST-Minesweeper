@@ -58,3 +58,20 @@ class PublicTeamListResponse(BaseModel):
 @app.get("/teams", response_model=PublicTeamListResponse)
 async def teams():
     return PublicTeamListResponse.from_teams(teams=session.teams)
+
+
+class PublicResetRequest(BaseModel):
+    username: str
+    password: str
+
+class PublicResetResponse(BaseModel):
+    successful: bool
+
+@app.post("/reset")
+async def reset_session(request: PublicResetRequest):
+    if request.username == "nickdg" and request.password == "flipthetable":  # Just for demo, never do this for production code!!!!
+        global session  #  Also never do this.
+        session = Session.init()
+        return PublicResetResponse(successful=True)
+    else:
+        return PublicResetResponse(successful=False)
