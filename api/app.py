@@ -4,7 +4,7 @@ from minesweeper.cases.list_teams import TeamListResponse
 from minesweeper.cases.new_game import NewGameResponse, NewGameRequest
 from minesweeper.cases.register_team import RegistrationRequest, RegistrationResponse
 from minesweeper.cases.reset_session import ResetResponse, ResetRequest
-from minesweeper.use_cases import UseCaseProvider
+from minesweeper.provider import UseCaseProvider
 
 app = FastAPI()
 
