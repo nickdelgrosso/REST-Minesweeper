@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from pydantic.main import BaseModel
 
 from api.routes import register_team, new_game
 from minesweeper.cases.list_teams import PublicTeamListResponse
@@ -9,6 +8,7 @@ from minesweeper.use_cases import UseCaseProvider
 app = FastAPI()
 app.include_router(register_team.router)
 app.include_router(new_game.router)
+
 
 @app.get("/")
 async def root():
