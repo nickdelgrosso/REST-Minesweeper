@@ -20,7 +20,7 @@ class RegistrationResponse(BaseModel):
 
 @router.post("/register", response_model=RegistrationResponse)
 async def register(request: RegistrationRequest):
-    team = Team.init(name=request.team_name)
+    team = Team(name=request.team_name)
     if request.do_registration:
         session.add_team(team=team)
         print(session)

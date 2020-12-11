@@ -10,12 +10,7 @@ from uuid import uuid4
 @dataclass
 class Team:
     name: str
-    id: str
-
-    @classmethod
-    def init(cls, name: str):
-        return cls(name=name, id=str(uuid4()))
-
+    id: str = field(default_factory=lambda: str(uuid4()))
 
 class Colors(Enum):
     RED = 'red'
