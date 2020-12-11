@@ -26,4 +26,5 @@ class PublicTeamListResponse(BaseModel):
 @router.get("/teams", response_model=PublicTeamListResponse)
 async def teams():
     session = inmemory.session
+    print(session)
     return PublicTeamListResponse.from_teams(teams=session.teams)

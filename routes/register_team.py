@@ -23,6 +23,7 @@ async def register(request: RegistrationRequest):
     team = Team.init(name=request.team_name)
     if request.do_registration:
         session.register_team(team=team)
+        print(session)
     response = RegistrationResponse(
         is_registered=request.do_registration,
         team_name=team.name,

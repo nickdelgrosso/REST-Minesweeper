@@ -16,6 +16,7 @@ class Team:
     def init(cls, name: str):
         return cls(name=name, id=str(uuid4()))
 
+
 class Colors(Enum):
     RED = 'red'
     GREEN = 'green'
@@ -43,22 +44,11 @@ class Game:
 
 Guess = List[Colors]
 
+
 @dataclass
 class Hint:
     n_correct_placement: int
     n_incorrect_placement: int
     n_unknown: int
 
-
-@dataclass
-class Session:
-    games: List[Game]
-    teams: List[Team]
-
-    @classmethod
-    def init(cls):
-        return cls(games=[], teams=[])
-
-    def register_team(self, team: Team):
-        self.teams.append(team)
 

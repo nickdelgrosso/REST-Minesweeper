@@ -1,8 +1,7 @@
 from fastapi import APIRouter
 from pydantic.main import BaseModel
 
-from data import inmemory
-from data.inmemory import restart_session
+from data.inmemory import session
 
 router = APIRouter()
 
@@ -18,7 +17,7 @@ class PublicResetResponse(BaseModel):
 @router.post("/reset")
 async def reset_session(request: PublicResetRequest):
     if request.username == "nickdg" and request.password == "flipthetable":  # Just for demo, never do this for production code!!!!
-        restart_session()
+        session.reset()
         return PublicResetResponse(successful=True)
     else:
         return PublicResetResponse(successful=False)

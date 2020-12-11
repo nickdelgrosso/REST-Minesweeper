@@ -1,7 +1,36 @@
-from minesweeper.entitites import Session
+from dataclasses import dataclass, field
+from typing import Dict, List
+from uuid import uuid4
 
-session = Session.init()
+from minesweeper.entitites import Game, Team
 
-def restart_session():
-    global session
-    session = Session.init()
+
+@dataclass
+class Session:
+    teams: List[Team] = field(default_factory=list)
+    games: Dict[str, Game] = field(default_factory=dict)
+
+    @classmethod
+    def init(cls):
+        return cls()
+
+    def reset(self):
+        self.teams = []
+        self.games = {}
+
+    def register_team(self, team: Team):
+        self.teams.append(team)
+
+    def team_id_exists(self, id: str):
+        return any(team.id == id for team in self.teams)
+
+    def register_game(self, game: Game) -> str:
+        game_id = str(uuid4())
+        self.games[game_id] = game
+        return game_id
+
+    def game_id_exists(self, id: str):
+        return any(team.id == id for team in self.teams)
+
+
+session = Session()

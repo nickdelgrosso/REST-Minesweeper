@@ -1,4 +1,5 @@
 from minesweeper.entitites import Team, Game, Colors, Guess
+from data.inmemory import Session
 
 
 def test_team_creates_with_unique_string_ids():
@@ -21,3 +22,10 @@ def test_game_knows_how_many_stones_it_has():
 
     game = Game(solution=[Colors.BLUE, Colors.GREEN, Colors.RED, Colors.RED])
     assert game.n_stones == 4
+
+
+def test_session_knows_if_team_id_exists_():
+    session = Session(teams=[Team(name='hi', id='abcde')], games={})
+    assert session.team_id_exists(id='abcde') == True
+    assert session.team_id_exists(id='aaaaa') == False
+
