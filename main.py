@@ -17,9 +17,10 @@ async def root():
 
 class RegistrationRequest(BaseModel):
     team_name: str
+    do_registration: bool = False
 
 class RegistrationResponse(BaseModel):
-    registered: bool
+    is_registered: bool
     team_name: str
     team_id: str
 
@@ -28,7 +29,7 @@ class RegistrationResponse(BaseModel):
 async def register(request: RegistrationRequest):
     team = Team.init(name=request.team_name)
     response = RegistrationResponse(
-        registered=True,
+        is_registered=request.do_registration,
         team_name=team.name,
         team_id=team.id
     )

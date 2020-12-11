@@ -18,7 +18,7 @@ def test_teams_can_register():
     )
     assert r.ok
     data = r.json()
-    assert data['registered'] is True
+    assert data['is_registered'] is False
     assert data['team_name'] == "TestTeam"
     assert len(data['team_id']) >= 8 and isinstance(data['team_id'], str)
 
