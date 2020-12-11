@@ -5,32 +5,12 @@ from pydantic import BaseModel
 
 from data import inmemory
 from minesweeper.entitites import Team, Session
-from routes import ping, register
+from routes import ping, register, list_teams
 
 app = FastAPI()
 app.include_router(ping.router)
 app.include_router(register.router)
-
-
-
-
-class PublicTeamResponse(BaseModel):
-    name: str
-
-class PublicTeamListResponse(BaseModel):
-    teams: List[PublicTeamResponse]
-
-    @classmethod
-    def from_teams(cls, teams: List[Team]):
-        return cls(
-            teams=[PublicTeamResponse(name=team.name) for team in teams],
-        )
-
-
-@app.get("/teams", response_model=PublicTeamListResponse)
-async def teams():
-    session = inmemory.session
-    return PublicTeamListResponse.from_teams(teams=session.teams)
+app.include_router(list_teams.router)
 
 
 class PublicResetRequest(BaseModel):
