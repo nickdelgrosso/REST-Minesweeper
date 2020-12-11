@@ -39,5 +39,5 @@ def test_new_game_can_be_started_with_correct_team_id():
     )
     assert r.ok
     data = r.json()
-    assert data['successful'] == True
+    assert data['successful'] is True
     assert isinstance(data['game_id'], str) and len(data['game_id']) >= 8
