@@ -1,43 +1,24 @@
-import requests
+import pytest
+
+from data.inmemory import Session
+from minesweeper.cases.new_game import NewGameUseCase, NewGameRequest
+from minesweeper.entitites import Team
 
 
-def test_new_game_can_be_started_with_correct_team_id():
-    r = requests.post(
-        "http://localhost:8000/reset",
-        json={
-            "username": "nickdg",  # NEVER HARDCODE USERNAMES AND PASSWORDS, ESP. INTO TESTS!!!
-            "password": "flipthetable",
+@pytest.fixture
+def session():
+    return Session(teams=[Team(name="GoodTeam", id="secret")])
 
-        }
-    )
-    assert r.ok
-    r = requests.post(
-        "http://localhost:8000/register",
-        json={
-            "team_name": "My Team",
-            "do_registration": True,
-        }
-    )
-    assert r.ok
-    data = r.json()
-    team_id = data['team_id']
 
-    r = requests.get(
-        "http://localhost:8000/teams",
-    )
-    assert r.ok
-    teams = r.json()['teams']
-    assert len(teams) > 0
-    assert teams[-1]['name'] == "My Team"
+def test_new_game_can_be_started_with_correct_team_id(session):
+    start_game = NewGameUseCase(session=session)
+    assert len(session.games) == 0
+    start_game(request=NewGameRequest(team_id="secret", n_stones=3))
+    assert len(session.games) == 1
 
-    r = requests.post(
-        "http://localhost:8000/new-game",
-        json={
-            "team_id": team_id,
-            "n_stones": 4,
-        }
-    )
-    assert r.ok
-    data = r.json()
-    assert data['successful'] is True
-    assert isinstance(data['game_id'], str) and len(data['game_id']) >= 8
+
+def test_new_game_isnt_started_with_unknown_team_id(session):
+    start_game = NewGameUseCase(session=session)
+    assert len(session.games) == 0
+    start_game(request=NewGameRequest(team_id="wrong_id", n_stones=3))
+    assert len(session.games) == 0

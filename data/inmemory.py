@@ -20,8 +20,10 @@ class Session:
     def add_team(self, team: Team):
         self.teams.append(team)
 
-    def team_id_exists(self, id: str):
-        return any(team.id == id for team in self.teams)
+    def get_team(self, id: str):
+        for team in self.teams:
+            if team.id == id:
+                return team
 
     def add_game(self, game: Game):
         self.games.append(game)

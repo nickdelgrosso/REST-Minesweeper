@@ -18,14 +18,15 @@ def test_game_knows_how_many_stones_it_has():
     game = Game.init(n_stones=2)
     assert game.n_stones == 2
 
-    game = Game(solution=[Colors.RED, Colors.RED, Colors.RED])
+    game = Game(solution=(Colors.RED, Colors.RED, Colors.RED))
     assert game.n_stones == 3
 
-    game = Game(solution=[Colors.BLUE, Colors.GREEN, Colors.RED, Colors.RED])
+    game = Game(solution=(Colors.BLUE, Colors.GREEN, Colors.RED, Colors.RED))
     assert game.n_stones == 4
 
 
 def test_session_knows_if_team_id_exists():
-    session = Session(teams=[Team(name='hi', id='abcde')], games={})
-    assert session.team_id_exists(id='abcde') == True
-    assert session.team_id_exists(id='aaaaa') == False
+    team = Team(name='hi', id='abcde')
+    session = Session(teams=[team], games=[])
+    assert session.get_team(id='abcde') == team
+    assert session.get_team(id='aaaaa') is None
