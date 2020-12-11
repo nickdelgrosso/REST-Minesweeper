@@ -6,21 +6,21 @@ from minesweeper.cases.base import BaseUseCase
 from minesweeper.entitites import Team
 
 
-class PublicTeamResponse(BaseModel):
+class TeamResponse(BaseModel):
     name: str
 
 
-class PublicTeamListResponse(BaseModel):
-    teams: List[PublicTeamResponse]
+class TeamListResponse(BaseModel):
+    teams: List[TeamResponse]
 
     @classmethod
     def from_teams(cls, teams: List[Team]):
         return cls(
-            teams=[PublicTeamResponse(name=team.name) for team in teams],
+            teams=[TeamResponse(name=team.name) for team in teams],
         )
 
 
 class ListTeamsUseCase(BaseUseCase):
 
-    def __call__(self) -> PublicTeamListResponse:
-        return PublicTeamListResponse.from_teams(teams=self.session.teams)
+    def __call__(self) -> TeamListResponse:
+        return TeamListResponse.from_teams(teams=self.session.teams)
