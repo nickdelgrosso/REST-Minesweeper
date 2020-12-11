@@ -1,7 +1,7 @@
 import pytest
 
 from data.inmemory import Session
-from minesweeper.cases.reset_session import ResetSessionUseCase, ResetRequest
+from use_cases.reset_session import ResetSessionUseCase, ResetRequest
 from domain.entities import Team
 
 

@@ -1,6 +1,6 @@
 from pydantic.main import BaseModel
 
-from minesweeper.cases.base import BaseUseCase
+from use_cases.base import BaseUseCase
 from domain.entities import Team
 
 

@@ -1,8 +1,8 @@
 from data.inmemory import session
-from minesweeper.cases.list_teams import ListTeamsUseCase
-from minesweeper.cases.new_game import NewGameUseCase
-from minesweeper.cases.register_team import RegisterTeamUseCase
-from minesweeper.cases.reset_session import ResetSessionUseCase, ResetRequest, ResetResponse
+from use_cases.list_teams import ListTeamsUseCase
+from use_cases.new_game import NewGameUseCase
+from use_cases.register_team import RegisterTeamUseCase
+from use_cases.reset_session import ResetSessionUseCase, ResetRequest, ResetResponse
 
 
 class UseCaseProvider:

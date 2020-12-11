@@ -1,7 +1,7 @@
 import pytest
 
 from data.inmemory import Session
-from minesweeper.cases.new_game import NewGameUseCase, NewGameRequest
+from use_cases.new_game import NewGameUseCase, NewGameRequest
 from domain.entities import Team
 
 

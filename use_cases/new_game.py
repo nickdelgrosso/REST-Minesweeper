@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic.main import BaseModel
 
 from domain.entities import Game
-from minesweeper.cases.base import BaseUseCase
+from use_cases.base import BaseUseCase
 
 
 class NewGameRequest(BaseModel):

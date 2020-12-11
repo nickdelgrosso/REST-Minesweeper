@@ -1,7 +1,7 @@
 import pytest
 
 from data.inmemory import Session
-from minesweeper.cases.register_team import RegisterTeamUseCase, RegistrationRequest
+from use_cases.register_team import RegisterTeamUseCase, RegistrationRequest
 
 
 @pytest.fixture
