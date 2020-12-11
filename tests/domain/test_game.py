@@ -26,7 +26,7 @@ def test_game_knows_how_many_stones_it_has():
     assert game.n_stones == 4
 
 
-r, g, b = Colors.RED, Colors.GREEN, Colors.BLUE
+r, g, b, y = Colors.RED, Colors.GREEN, Colors.BLUE, Colors.YELLOW
 cases = [
     ((r, r, r, r), (g, g, g, g), 0, 0, 4),
     ((r, r, r, g), (g, g, g, g), 1, 0, 3),
@@ -40,6 +40,8 @@ cases = [
     ((r, g, b, b), (b, b, r, g), 0, 4, 0),
     ((r, g), (g, r), 0, 2, 0),
     ((r, r), (r, r), 2, 0, 0),
+    ((r, g, b), (r, b, y), 1, 1, 1),
+    ((y, b, g, r, y, b, y, g, b), (b, g, y, b, r, r, g, r, b), 1, 6, 2)
 ]
 
 
@@ -50,4 +52,3 @@ def test_game_can_tell_correct_placements(solution, guess, correct, incorrect, u
     assert hint.correct == correct
     assert hint.incorrect == incorrect
     assert hint.unknown == unknown
-
