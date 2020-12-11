@@ -3,11 +3,11 @@ from __future__ import annotations
 import random
 from collections import Counter
 from dataclasses import dataclass, field
-from typing import Tuple
+from typing import Tuple, Optional
 from uuid import uuid4
 
 from domain.errors import IncorrectNumberOfStonesError
-from domain.value_objects import Colors, StoneSequence, Hint
+from domain.value_objects import Colors, StoneSequence, Clue
 
 
 @dataclass(frozen=True)
@@ -18,7 +18,8 @@ class Team:
 
 @dataclass(frozen=True)
 class Game:
-    solution: Tuple[Colors, ...]
+    solution: StoneSequence
+    clues: Tuple[Clue, ...] = field(default_factory=tuple)
     id: str = field(default_factory=lambda: str(uuid4()))
 
     @property
@@ -32,7 +33,7 @@ class Game:
         )
 
     @staticmethod
-    def get_hint(guess: StoneSequence, solution: StoneSequence) -> Hint:
+    def get_clue(guess: StoneSequence, solution: StoneSequence) -> Clue:
         if len(guess) != len(solution):
             raise IncorrectNumberOfStonesError(f"Game has {len(solution)} stones, guess had {len(guess)} stones.")
 
@@ -51,11 +52,25 @@ class Game:
         unknown = len(guess) - correct - incorrect
 
         assert (correct + incorrect + unknown) == len(guess), "Total of hints must equal number of stones."
-        return Hint(
+        return Clue(
+            stones=guess,
             correct=correct,
             incorrect=incorrect,
             unknown=unknown,
         )
 
-    def guess(self, guess: StoneSequence) -> Hint:
-        return self.get_hint(guess=guess, solution=self.solution)
+    @property
+    def num_turns(self) -> int:
+        return len(self.clues)
+
+    @property
+    def last_clue(self) -> Optional[Clue]:
+        return self.clues[-1] if self.clues else None
+
+    def guess(self, guess: StoneSequence) -> Game:
+        clue = self.get_clue(guess=guess, solution=self.solution)
+        return Game(
+            solution=self.solution,
+            clues=self.clues + (clue,),
+            id=self.id,
+        )

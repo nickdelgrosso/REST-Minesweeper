@@ -17,7 +17,14 @@ StoneSequence = Tuple[Colors, ...]
 
 
 @dataclass(frozen=True)
-class Hint:
+class Clue:
+    stones: StoneSequence
     correct: int
     incorrect: int
     unknown: int
+
+    def __post_init__(self):
+        self.validate()
+
+    def validate(self):
+        assert len(self.stones) == self.correct + self.incorrect + self.unknown

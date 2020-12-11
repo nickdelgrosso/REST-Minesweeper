@@ -48,7 +48,20 @@ cases = [
 
 @pytest.mark.parametrize("solution, guess, correct, incorrect, unknown", cases)
 def test_game_can_tell_correct_placements(solution, guess, correct, incorrect, unknown):
-    hint = Game.get_hint(solution=solution, guess=guess)
+    hint = Game.get_clue(solution=solution, guess=guess)
     assert hint.correct == correct
     assert hint.incorrect == incorrect
     assert hint.unknown == unknown
+
+
+def test_empty_game_has_no_last_clue():
+    game = Game(solution=(r, r, r))
+    assert game.last_clue is None
+
+
+def test_guessing_updates_turn_counter():
+    game = Game(solution=(r, r, r))
+    for idx in range(10):
+        game = game.guess((r, r, g))
+        assert game.num_turns == idx + 1
+
