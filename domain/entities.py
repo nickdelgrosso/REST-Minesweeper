@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from typing import List, Tuple
 from uuid import uuid4
 
-from minesweeper.value_objects import Colors, Guess, Hint
+from domain.value_objects import Colors, Guess, Hint
 
 
 @dataclass(frozen=True)

@@ -2,9 +2,8 @@ from typing import Optional
 
 from pydantic.main import BaseModel
 
-from data import inmemory
+from domain.entities import Game
 from minesweeper.cases.base import BaseUseCase
-from minesweeper.entitites import Game
 
 
 class NewGameRequest(BaseModel):

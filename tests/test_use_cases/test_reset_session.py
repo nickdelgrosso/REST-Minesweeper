@@ -2,7 +2,7 @@ import pytest
 
 from data.inmemory import Session
 from minesweeper.cases.reset_session import ResetSessionUseCase, ResetRequest
-from minesweeper.entitites import Team
+from domain.entities import Team
 
 
 @pytest.fixture

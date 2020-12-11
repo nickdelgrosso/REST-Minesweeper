@@ -1,7 +1,7 @@
 from pydantic.main import BaseModel
 
 from minesweeper.cases.base import BaseUseCase
-from minesweeper.entitites import Team
+from domain.entities import Team
 
 
 class RegistrationRequest(BaseModel):

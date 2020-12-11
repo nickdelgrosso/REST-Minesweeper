@@ -1,6 +1,6 @@
 from data.inmemory import Session
-from minesweeper.entitites import Team, Game
-from minesweeper.value_objects import Colors
+from domain.entities import Team, Game
+from domain.value_objects import Colors
 
 
 def test_team_creates_with_unique_string_ids():

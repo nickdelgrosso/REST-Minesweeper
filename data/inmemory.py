@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List
 
-from minesweeper.entitites import Game, Team
+from domain.entities import Game, Team
 
 
 @dataclass
