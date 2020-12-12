@@ -1,7 +1,7 @@
 from pydantic.main import BaseModel
 
-from use_cases.base import BaseUseCase
-from domain.entities import Team
+from src.use_cases.base import BaseUseCase
+from src.domain.entities import Team
 
 
 class RegistrationRequest(BaseModel):

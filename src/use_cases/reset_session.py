@@ -1,6 +1,6 @@
 from pydantic.main import BaseModel
 
-from use_cases.base import BaseUseCase
+from src.use_cases.base import BaseUseCase
 
 
 class ResetRequest(BaseModel):

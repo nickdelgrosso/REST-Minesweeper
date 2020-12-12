@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 
-from use_cases.list_teams import TeamListResponse
-from use_cases.new_game import NewGameResponse, NewGameRequest
-from use_cases.register_team import RegistrationRequest, RegistrationResponse
-from use_cases.reset_session import ResetResponse, ResetRequest
-from use_cases.provider import UseCaseProvider
+from src.use_cases.list_teams import TeamListResponse
+from src.use_cases.new_game import NewGameResponse, NewGameRequest
+from src.use_cases.register_team import RegistrationRequest, RegistrationResponse
+from src.use_cases.reset_session import ResetResponse, ResetRequest
+from src.use_cases.provider import UseCaseProvider
 
 app = FastAPI()
 

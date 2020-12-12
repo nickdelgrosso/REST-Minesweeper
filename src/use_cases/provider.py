@@ -1,8 +1,8 @@
-from data.inmemory import session
-from use_cases.list_teams import ListTeamsUseCase
-from use_cases.new_game import NewGameUseCase
-from use_cases.register_team import RegisterTeamUseCase
-from use_cases.reset_session import ResetSessionUseCase, ResetRequest, ResetResponse
+from src.data.inmemory import session
+from src.use_cases.list_teams import ListTeamsUseCase
+from src.use_cases.new_game import NewGameUseCase
+from src.use_cases.register_team import RegisterTeamUseCase
+from src.use_cases.reset_session import ResetSessionUseCase, ResetRequest, ResetResponse
 
 
 class UseCaseProvider:

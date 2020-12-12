@@ -2,8 +2,8 @@ from typing import Optional
 
 from pydantic.main import BaseModel
 
-from domain.entities import Game
-from use_cases.base import BaseUseCase
+from src.domain.entities import Game
+from src.use_cases.base import BaseUseCase
 
 
 class NewGameRequest(BaseModel):

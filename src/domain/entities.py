@@ -6,8 +6,8 @@ from dataclasses import dataclass, field
 from typing import Tuple, Optional
 from uuid import uuid4
 
-from domain.errors import IncorrectNumberOfStonesError
-from domain.value_objects import Colors, StoneSequence, Clue
+from src.domain.errors import IncorrectNumberOfStonesError
+from src.domain.value_objects import Colors, StoneSequence, Clue
 
 
 @dataclass(frozen=True)

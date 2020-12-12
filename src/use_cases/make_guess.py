@@ -2,7 +2,7 @@ from typing import Tuple
 
 from pydantic import BaseModel
 
-from use_cases.base import BaseUseCase
+from src.use_cases import BaseUseCase
 
 
 class GuessRequest(BaseModel):

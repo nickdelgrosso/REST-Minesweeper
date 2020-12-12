@@ -1,5 +1,5 @@
-from data.inmemory import Session
-from domain.entities import Team
+from src.data.inmemory import Session
+from src.domain.entities import Team
 
 
 def test_session_knows_if_team_id_exists():

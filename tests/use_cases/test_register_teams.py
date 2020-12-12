@@ -1,7 +1,7 @@
 import pytest
 
-from data.inmemory import Session
-from use_cases.register_team import RegisterTeamUseCase, RegistrationRequest
+from src.data.inmemory import Session
+from src.use_cases.register_team import RegisterTeamUseCase, RegistrationRequest
 
 
 @pytest.fixture

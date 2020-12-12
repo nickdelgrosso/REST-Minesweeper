@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from data.inmemory import Session
+from src.data.inmemory import Session
 
 
 class BaseUseCase(ABC):

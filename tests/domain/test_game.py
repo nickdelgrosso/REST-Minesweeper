@@ -1,7 +1,7 @@
 import pytest
 
-from domain.entities import Team, Game
-from domain.value_objects import Colors
+from src.domain.entities import Team, Game
+from src.domain.value_objects import Colors
 
 
 def test_team_creates_with_unique_string_ids():

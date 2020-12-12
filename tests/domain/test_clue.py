@@ -1,6 +1,6 @@
 import pytest
 
-from domain.value_objects import Colors, Clue
+from src.domain.value_objects import Colors, Clue
 
 r, g, b = Colors.RED, Colors.GREEN, Colors.BLUE
 
