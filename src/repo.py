@@ -24,8 +24,5 @@ class Session:
     def add_game(self, game: Game):
         self.games.append(game)
 
-    def game_id_exists(self, id: str):
-        return any(game.id == id for game in self.games)
-
 
 session = Session()
