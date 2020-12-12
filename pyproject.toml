@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "mastermind_api"
+version = "0.1.0"
+description = "A web API for playing the Mastermind logic puzzle.  Used as an example repository for clean architecture and TDD."
+authors = ["Nicholas A. Del Grosso <delgrosso.nick@gmail.com>"]
+license = "LGPL"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.62.0"
+pydantic = "^1.7.3"
+uvicorn = "^0.13.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.1.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

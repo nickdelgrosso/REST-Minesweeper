@@ -1,1 +1,1 @@
-uvicorn src.api:app --reload
+poetry run uvicorn src.api:app --reload
