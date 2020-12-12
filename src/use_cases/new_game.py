@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic.main import BaseModel
 
-from src.domain.entities import Game
+from src.domain import Game
 from src.use_cases.base import BaseUseCase
 
 

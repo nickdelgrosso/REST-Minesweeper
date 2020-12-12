@@ -1,4 +1,4 @@
-from src.data.inmemory import session
+from src.repo import session
 from src.use_cases.list_teams import ListTeamsUseCase
 from src.use_cases.new_game import NewGameUseCase
 from src.use_cases.register_team import RegisterTeamUseCase

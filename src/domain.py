@@ -3,11 +3,9 @@ from __future__ import annotations
 import random
 from collections import Counter
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Tuple, Optional
 from uuid import uuid4
-
-from src.domain.errors import IncorrectNumberOfStonesError
-from src.domain.value_objects import Colors, StoneSequence, Clue
 
 
 @dataclass(frozen=True)
@@ -78,3 +76,41 @@ class Game:
             clues=self.clues + (clue,),
             id=self.id,
         )
+
+
+class IncorrectNumberOfStonesError(Exception):
+    ...
+
+
+class Colors(Enum):
+    RED = 'red'
+    GREEN = 'green'
+    BLUE = 'blue'
+    YELLOW = 'yellow'
+    ORANGE = 'orange'
+
+
+StoneSequence = Tuple[Colors, ...]
+
+
+class InvalidClueError(Exception):
+    ...
+
+
+@dataclass(frozen=True)
+class Clue:
+    stones: StoneSequence
+    correct: int
+    incorrect: int
+    unknown: int
+
+    def __post_init__(self):
+        self.validate()
+
+    def validate(self):
+        if len(self.stones) != self.correct + self.incorrect + self.unknown:
+            raise InvalidClueError(str(self))
+
+    @property
+    def is_perfect_match(self) -> bool:
+        return self.correct == len(self.stones)

@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List
 
-from src.domain.entities import Game, Team
+from src.domain import Game, Team
 
 
 @dataclass

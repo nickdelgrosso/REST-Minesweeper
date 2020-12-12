@@ -1,6 +1,6 @@
 import pytest
 
-from src.data.inmemory import Session
+from src.repo import Session
 from src.use_cases.register_team import RegisterTeamUseCase, RegistrationRequest
 
 

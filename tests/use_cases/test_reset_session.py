@@ -1,8 +1,8 @@
 import pytest
 
-from src.data.inmemory import Session
+from src.repo import Session
 from src.use_cases.reset_session import ResetSessionUseCase, ResetRequest
-from src.domain.entities import Team
+from src.domain import Team
 
 
 @pytest.fixture
