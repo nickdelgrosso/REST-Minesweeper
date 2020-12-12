@@ -9,10 +9,6 @@ class Session:
     teams: List[Team] = field(default_factory=list)
     games: List[Game] = field(default_factory=list)
 
-    @classmethod
-    def init(cls):
-        return cls()
-
     def reset(self):
         self.teams = []
         self.games = []
