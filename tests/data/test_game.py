@@ -1,5 +1,5 @@
 from src.repo import Session
-from src.domain import Team
+from src.domain.context import Team
 
 
 def test_session_knows_if_team_id_exists():

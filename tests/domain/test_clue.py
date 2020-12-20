@@ -1,6 +1,6 @@
 import pytest
 
-from src.domain import Colors, Clue
+from src.domain.mastermind import Colors, Clue
 
 r, g, b = Colors.RED, Colors.GREEN, Colors.BLUE
 

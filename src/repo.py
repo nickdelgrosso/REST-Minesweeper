@@ -1,7 +1,8 @@
 from dataclasses import dataclass, field
 from typing import List
 
-from src.domain import Puzzle, Team
+from src.domain.context import Team
+from src.domain.mastermind import Puzzle
 
 
 @dataclass

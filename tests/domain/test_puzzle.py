@@ -1,6 +1,7 @@
 import pytest
 
-from src.domain import Team, Puzzle, Colors
+from src.domain.context import Team
+from src.domain.mastermind import Puzzle, Colors
 
 
 def test_team_creates_with_unique_string_ids():

@@ -1,4 +1,4 @@
-from src.domain import Team
+from src.domain.context import Team
 
 
 def test_team_gets_a_unique_id_upon_generation():

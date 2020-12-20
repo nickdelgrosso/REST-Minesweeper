@@ -2,7 +2,7 @@ import pytest
 
 from src.repo import Session
 from src.use_cases.new_game import NewGameUseCase, NewGameRequest
-from src.domain import Team
+from src.domain.context import Team
 
 
 @pytest.fixture

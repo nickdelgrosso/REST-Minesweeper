@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic.main import BaseModel
 
-from src.domain import Puzzle
+from src.domain.mastermind import Puzzle
 from src.use_cases.base import BaseUseCase
 
 

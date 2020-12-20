@@ -1,4 +1,4 @@
-from __future__ import annotations
+from __future__  import annotations
 
 import random
 from collections import Counter
@@ -6,12 +6,6 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Tuple, Optional
 from uuid import uuid4
-
-
-@dataclass(frozen=True)
-class Team:
-    name: str
-    id: str = field(default_factory=lambda: str(uuid4()))
 
 
 @dataclass(frozen=True)
