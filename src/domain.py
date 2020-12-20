@@ -15,7 +15,7 @@ class Team:
 
 
 @dataclass(frozen=True)
-class Game:
+class Puzzle:
     solution: StoneSequence
     clues: Tuple[Clue, ...] = field(default_factory=tuple)
     id: str = field(default_factory=lambda: str(uuid4()))
@@ -69,9 +69,9 @@ class Game:
     def won(self) -> bool:
         return any(clue.is_perfect_match for clue in self.clues[::-1])
 
-    def guess(self, guess: StoneSequence) -> Game:
+    def guess(self, guess: StoneSequence) -> Puzzle:
         clue = self.get_clue(guess=guess, solution=self.solution)
-        return Game(
+        return Puzzle(
             solution=self.solution,
             clues=self.clues + (clue,),
             id=self.id,

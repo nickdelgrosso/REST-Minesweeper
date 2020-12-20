@@ -1,13 +1,13 @@
 from dataclasses import dataclass, field
 from typing import List
 
-from src.domain import Game, Team
+from src.domain import Puzzle, Team
 
 
 @dataclass
 class Session:
     teams: List[Team] = field(default_factory=list)
-    games: List[Game] = field(default_factory=list)
+    games: List[Puzzle] = field(default_factory=list)
 
     def reset(self):
         self.teams = []
@@ -21,7 +21,7 @@ class Session:
             if team.id == id:
                 return team
 
-    def add_game(self, game: Game):
+    def add_game(self, game: Puzzle):
         self.games.append(game)
 
 
